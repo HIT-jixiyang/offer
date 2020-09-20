@@ -1,0 +1,33 @@
+# -*- coding:utf-8 -*-
+class Solution:
+    def Power(self, base, exponent):
+        if exponent==0:
+            return 1
+        # write code here
+        flag = 0
+        if exponent < 0:
+            flag = 1
+            exponent = -exponent
+        # ans = 1
+        # while exponent > 0:
+        #     if exponent & 1 == 1:
+        #         ans = ans * base
+        #     exponent = exponent >> 1
+        #     base *= base
+        if flag > 0:
+            return 1 / self.fastpower(base,exponent)
+        else:
+            return self.fastpower(base,exponent)
+
+    def fastpower(self,base,exp):
+        if exp==1:
+            return base
+        else:
+            if exp%2==1:
+                return self.fastpower(base,exp-1)*base
+            else:
+                return self.fastpower(base*base,exp>>1)
+
+if __name__ == '__main__':
+    S=Solution()
+    print(S.Power(3,2))
